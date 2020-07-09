@@ -1,0 +1,34 @@
+//probelm 1, solution 2
+ALGORITHM sum of distinct elements
+VAR
+    set1, set2:ARRAY_OF INTEGER[50];
+    dist: HASH_TABLE<INTEGER,INTEGER>;
+    i,sum:INTEGER :=0;
+BEGIN
+write ("Please write two sets of numbers,for each set don't repeat the numbers.")
+read(set1)
+read(set2)
+    FOR i FROM 0 TO set1.length -1 STEP 1  DO
+         dist.insert(set1[i],1)
+    END_FOR
+    FOR i FROM 0 TO set2.length -1 STEP step  DO
+        IF (dist.lookup(set2[i])= TRUE ) THEN
+        dist.insert(set2[i],2)
+        ELSE
+        dist.insert(set2[i],1)
+        END_IF
+    END_FOR
+    FOR i FROM 0 TO set1.length-1 STEP 1  DO
+        IF (dist.get(set1[i])=1/*= is equal*/) THEN
+            sum:= sum + set1[i]
+        END_IF
+    END_FOR
+    FOR i FROM 0 TO set2.length -1 STEP 1  DO
+        IF (dist.get(set2[i])=1) THEN
+            sum:= sum +set2[i]
+        END_IF
+    END_FOR
+
+write ("The sum of distinct elements is:" sum) 
+
+END
